@@ -8,7 +8,8 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    # favorites.sizeはキャッシュを使わないからやめた方がいい
+    @books = Book.includes(:favorites).sort{|a, b| b.favorites.size <=> a.favorites.size}
     @book = Book.new
   end
 

@@ -2,6 +2,7 @@ class FavoritesController < ApplicationController
   def create
     if !Favorite.exists?(book_id: params[:book_id], user_id: current_user.id)
       @book = Book.find(params[:book_id])
+      @books = Book.includes(:favorites).sort{|a, b| b.favorites.size <=> a.favorites.size}
       @favorite = current_user.favorites.new(book_id: @book.id)
       @favorite.save
       #render 'replace_btn'
@@ -11,6 +12,7 @@ class FavoritesController < ApplicationController
   def destroy
     if Favorite.exists?(book_id: params[:book_id], user_id: current_user.id)
       @book = Book.find(params[:book_id])
+      @books = Book.includes(:favorites).sort{|a, b| b.favorites.size <=> a.favorites.size}
       @favorite = current_user.favorites.find_by(book_id: @book.id)
       @favorite.destroy
       #render 'replace_btn'
