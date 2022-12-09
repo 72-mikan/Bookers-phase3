@@ -8,8 +8,10 @@ class BooksController < ApplicationController
   end
 
   def index
-    # favorites.sizeはキャッシュを使わないからやめた方がいい
-    @books = Book.includes(:favorites).sort{|a, b| b.favorites.size <=> a.favorites.size}
+    # countメソッドは実行時、毎回データベースにクエリを投げる
+    # lengthメソッドは実行時、メモリに保存
+    # sizeメソッドはcountとlengthの合わせ技
+    @books = Book.all.sort{|a, b| b.favorites.length <=> a.favorites.length}
     @book = Book.new
   end
 
