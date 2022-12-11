@@ -1,0 +1,15 @@
+<h2><%= @user.name %></h2>
+
+<div>
+  <% @chats.each do |chat| %>
+    <%= chat.body %></br>
+  <% end %>
+</div>
+    
+<div>
+  <%= form_with model: @chat, url: user_chats_path do |f| %>
+    <%= f.text_field :body %>
+    <%= f.hidden_field :followed_id, :value => @user.id %>
+  <% end %>
+</div>
+    
