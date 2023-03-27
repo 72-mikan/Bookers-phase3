@@ -1,0 +1,28 @@
+<h2>投稿数の前日比・前週比</h2>
+<table border="1" cellpadding="10">
+  <thead>
+    <td>今日の投稿数</td>
+    <td>前日の投稿数</td>
+    <td>前日比</td>
+  </thead>
+
+  <tbody>
+    <td><%= post_today %></td>
+    <td><%= post_yesterday %></td>
+    <td><%= day_before %> %</td>
+  </tbody>
+</table>
+
+<table border="1" cellpadding="10">
+  <thead>
+    <td>今週の投稿数</td>
+    <td>前週の投稿数</td>
+    <td>前週比</td>
+  </thead>
+
+  <tbody>
+    <td><%= this_week %></td>
+    <td><%= last_week %></td>
+    <td><%= comp_last_week %> %</td>
+  </tbody>
+</table>
