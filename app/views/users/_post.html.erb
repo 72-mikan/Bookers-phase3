@@ -7,8 +7,8 @@
   </thead>
 
   <tbody>
-    <td><%= post_today %></td>
-    <td><%= post_yesterday %></td>
+    <td><%= user.books.created_today.count %></td>
+    <td><%= user.books.created_yesterday.count %></td>
     <td><%= day_before %> %</td>
   </tbody>
 </table>
@@ -21,8 +21,8 @@
   </thead>
 
   <tbody>
-    <td><%= this_week %></td>
-    <td><%= last_week %></td>
+    <td><%= user.books.created_this_week.count %></td>
+    <td><%= user.books.created_last_week.count %></td>
     <td><%= comp_last_week %> %</td>
   </tbody>
 </table>

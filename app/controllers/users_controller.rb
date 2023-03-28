@@ -8,15 +8,19 @@ class UsersController < ApplicationController
     @book = Book.new
     # 前日比
     # @post_today = @user.post_counts.where(created_at: Time.zone.now.all_day).count
-    @post_today = @user.post_counts.where("created_at >= ?", Time.zone.now.beginning_of_day).count
+    #@post_today = @user.post_counts.where("created_at >= ?", Time.zone.now.beginning_of_day).count
     # @post_yesterday = @user.post_counts.where(created_at: 1.day.ago.all_day).count
-    @post_yesterday = @user.post_counts.where("created_at >= ? and created_at <= ?", 1.day.ago.beginning_of_day, Time.zone.now.beginning_of_day).count
+    #@post_yesterday = @user.post_counts.where("created_at >= ? and created_at <= ?", 1.day.ago.beginning_of_day, Time.zone.now.beginning_of_day).count
+    post_today = @user.books.created_today.count
+    post_yesterday = @user.books.created_yesterday.count
     # 前週比(day_before呼び出し)
-    @day_before = day_before(@post_today, @post_yesterday)
-    @this_week = @user.post_counts.where("created_at >= ?", 1.week.ago.beginning_of_day).count
-    @last_week = @user.post_counts.where("created_at >= ? and created_at <= ?", 2.week.ago.beginning_of_day, 1.week.ago.beginning_of_day).count
+    @day_before = day_before(post_today, post_yesterday)
+    #@this_week = @user.post_counts.where("created_at >= ?", 1.week.ago.beginning_of_day).count
+    #@last_week = @user.post_counts.where("created_at >= ? and created_at <= ?", 2.week.ago.beginning_of_day, 1.week.ago.beginning_of_day).count
+    this_week = @user.books.created_this_week.count
+    last_week = @user.books.created_last_week.count
     # 先週比(comp_last_week呼び出し)
-    @comp_last_week = comp_last_week(@this_week, @last_week)
+    @comp_last_week = comp_last_week(this_week, last_week)
   end
 
   def index
