@@ -1,0 +1,74 @@
+<h2>7日分の投稿数</h2>
+<table border="1" cellpadding="5">
+  <thead>
+    <tr>
+      <td width="80">6日前</td>
+      <td width="80">5日前</td>
+      <td width="80">4日前</td>
+      <td width="80">3日前</td>
+      <td width="80">2日前</td>
+      <td width="80">1日前</td>
+      <td width="80">今日</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= user.books.created_6days.count %></td>
+      <td><%= user.books.created_5days.count %></td>
+      <td><%= user.books.created_4days.count %></td>
+      <td><%= user.books.created_3days.count %></td>
+      <td><%= user.books.created_2days.count %></td>
+      <td><%= user.books.created_yesterday.count %></td>
+      <td><%= user.books.created_today.count %></td>
+    </tr>
+  </tbody>
+</table>
+
+<canvas id="myLineChart" width="800" height="500"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  //折れ線グラフ
+  $(document).on('turbolinks:load', function() {
+  // turbolinksを無効化したい処理
+    var ctx = document.getElementById("myLineChart");
+    var myLineChart = new Chart(ctx, {
+      //グラフの種類
+      type: 'line',
+      //データの設定
+      data: {
+          //データ項目のラベル
+          labels: ["6日前", "5日前", "4日前", "3日前", "2日前", "1日前", "今日"],
+          //データセット
+          datasets: [{
+              //凡例
+              label: "投稿した本の数",
+              //背景色
+              backgroundColor: "rgba(75,192,192,0.4)",
+              //枠線の色
+              borderColor: "rgba(0,132,220,1)",
+              tension: 0.5,
+              //グラフのデータ
+              data: [
+                <%= user.books.created_6days.count %>,
+                <%= user.books.created_5days.count %>,
+                <%= user.books.created_4days.count %>,
+                <%= user.books.created_3days.count %>,
+                <%= user.books.created_2days.count %>,
+                <%= user.books.created_yesterday.count %>,
+                <%= user.books.created_today.count %>
+              ]
+          }]
+      },
+      //オプションの設定
+      options: {
+        plugins: {
+          title: {
+            display: true, // タイトルを表示する
+            text: '7日間の投稿数の比較' // タイトルのテキスト
+          },
+        },
+      }
+    });
+  });
+</script>

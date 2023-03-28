@@ -5,6 +5,14 @@ class Book < ApplicationRecord
   
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
+
+  scope :created_today, -> { where("created_at >= ?", Time.zone.now.beginning_of_day) }
+  scope :created_yesterday, -> { where("created_at >= ? and created_at <= ?", 1.day.ago.beginning_of_day, Time.zone.now.beginning_of_day) }
+  scope :created_2days, -> { where("created_at >= ? and created_at <= ?", 2.day.ago.beginning_of_day, 1.day.ago.beginning_of_day) }
+  scope :created_3days, -> { where("created_at >= ? and created_at <= ?", 3.day.ago.beginning_of_day, 2.day.ago.beginning_of_day) }
+  scope :created_4days, -> { where("created_at >= ? and created_at <= ?", 4.day.ago.beginning_of_day, 3.day.ago.beginning_of_day) }
+  scope :created_5days, -> { where("created_at >= ? and created_at <= ?", 5.day.ago.beginning_of_day, 4.day.ago.beginning_of_day) }
+  scope :created_6days, -> { where("created_at >= ? and created_at <= ?", 2.day.ago.beginning_of_day, 1.day.ago.beginning_of_day) }
   
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
