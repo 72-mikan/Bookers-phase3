@@ -9,6 +9,10 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
+      <%= render 'form', user: @user %>
+      <div class="post_count">
+        <%= render 'posts', display_flag: @display_flag, post_count: @post_count %>
+      </div>
     </div>
   </div>
 </div>

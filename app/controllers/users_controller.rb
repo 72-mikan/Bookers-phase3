@@ -6,6 +6,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    @display_flag = false
+    select_date = params[:date]
+    if select_date != "" && select_date != nil
+      @display_flag = true
+      @post_count = @user.books.where("created_at >= ? and created_at <= ?", select_date.to_date, select_date.to_date + 1).count
+      render :posts
+    end
   end
 
   def index
