@@ -28,11 +28,11 @@
             <td><%= @group.name %></td>
             <td><%= @group.introduction %></td>
             <td><%= render 'menber', group: @group %></td>
-            <td>
-              <% if @group.owner_id != current_user.id %>
-                <%= render 'btn', group: @group %>
-              <% end %>
-            </td>
+            <% if @group.owner_id != current_user.id %>
+              <%= render 'btn', group: @group %>
+            <% else %>
+              <%= link_to 'Edit', edit_group_path(@group.id) %>
+            <% end %>
           </tr>
         </tbody>
       </table>
