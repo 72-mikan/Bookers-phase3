@@ -32,7 +32,7 @@
               <%= render 'btn', group: @group %>
             <% else %>
               <td><%= link_to 'Edit', edit_group_path(@group.id) , class: "btn btn-success" %></td>
-              <td></td>
+              <td><%= link_to 'Notice an Event', new_group_group_mail_path(@group.id), class: "btn btn-info" %></td>
             <% end %>
           </tr>
         </tbody>
