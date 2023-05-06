@@ -4,7 +4,7 @@
       <th></th>
       <th>Title</th>
       <th>Opinion</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +20,21 @@
             <%= render "favorites/btn", book: book %>
         </td>
         <td><%= render "book_comments/counter", book: book %></td>
+        <td>
+          <div id="star-<%= book.id %>"></div>
+          <script>
+            var elem2 = document.getElementById('star-<%= book.id %>');
+            var opt2 = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                readOnly: true,
+                half      : true,
+                score: <%= book.star %>,
+            };
+            raty(elem2,opt2);
+          </script>
+        </td>
       </tr>
     <% end %>
   </tbody>

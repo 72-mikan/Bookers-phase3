@@ -23,6 +23,20 @@
           <td class="book-comments-counter">
             <%= render "book_comments/counter", book: @book %>
           </td>
+          <td>
+            <div id="star-<%= @book.id %>"></div>
+            <script>
+              var elem2 = document.getElementById('star-<%= @book.id %>');
+              var opt2 = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  readOnly: true,
+                  score: <%= @book.star %>
+              };
+              raty(elem2,opt2);
+            </script>
+          </td>
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}" %></td>
