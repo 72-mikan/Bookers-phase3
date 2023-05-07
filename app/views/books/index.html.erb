@@ -1,4 +1,8 @@
 <div class='container px-5 px-sm-0'>
+<%= form_with url: book_tag_path, method: :get do |f| %>
+  <%= f.text_field :tag %>
+  <%= f.submit 'タグ検索' %>
+<% end %>
   <%= render 'layouts/errors', obj: @book %>
   <div class='row'>
     <div class='col-md-3'>

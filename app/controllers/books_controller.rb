@@ -45,10 +45,14 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def book_tag
+    @books = Book.where(tag: params[:tag])
+  end
+
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :star)
+    params.require(:book).permit(:title, :body, :star, :tag)
   end
 
   def ensure_correct_user

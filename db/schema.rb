@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2021_10_26_033556) do
     t.text "body"
     t.integer "user_id"
     t.float "star"
+    t.string "tag"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
