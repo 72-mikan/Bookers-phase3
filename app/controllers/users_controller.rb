@@ -27,7 +27,9 @@ class UsersController < ApplicationController
     select_date = params[:date]
     if select_date != "" && select_date != nil
       @display_flag = true
-      @post_count = @user.books.where("created_at >= ? and created_at <= ?", select_date.to_date, select_date.to_date + 1).count
+      @date_test = select_date
+      @date = select_date.to_date
+      @post_count = @user.books.where("created_at >= ? and created_at <= ?", select_date.to_date-1, select_date.to_date ).count
       render :posts
     end
 
