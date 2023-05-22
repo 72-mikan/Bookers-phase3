@@ -28,11 +28,16 @@
 
 <canvas id="myLineChart" width="800" height="500"></canvas>
 <script>
+var myLineChart;
   //折れ線グラフ
   $(document).on('turbolinks:load', function() {
+    if(myLineChart){
+      myLineChart.destroy();
+    }
   // turbolinksを無効化したい処理
     var ctx = document.getElementById('myLineChart');
-    var myLineChart = new Chart(ctx, {
+    
+    myLineChart = new Chart(ctx, {
       //グラフの種類
       type: 'line',
       //データの設定
@@ -70,7 +75,9 @@
         },
       }
     });
+    
   });
+  
 </script>
 
 
