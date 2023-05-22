@@ -1,3 +1,4 @@
+
 <h2>7日分の投稿数</h2>
 <table border="1" cellpadding="5">
   <thead>
@@ -26,12 +27,11 @@
 </table>
 
 <canvas id="myLineChart" width="800" height="500"></canvas>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   //折れ線グラフ
   $(document).on('turbolinks:load', function() {
   // turbolinksを無効化したい処理
-    var ctx = document.getElementById("myLineChart");
+    var ctx = document.getElementById('myLineChart');
     var myLineChart = new Chart(ctx, {
       //グラフの種類
       type: 'line',
@@ -72,3 +72,6 @@
     });
   });
 </script>
+
+
+

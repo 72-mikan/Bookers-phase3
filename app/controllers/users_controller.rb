@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+
     # 前日比
     # @post_today = @user.post_counts.where(created_at: Time.zone.now.all_day).count
     #@post_today = @user.post_counts.where("created_at >= ?", Time.zone.now.beginning_of_day).count
@@ -21,6 +22,15 @@ class UsersController < ApplicationController
     last_week = @user.books.created_last_week.count
     # 先週比(comp_last_week呼び出し)
     @comp_last_week = comp_last_week(this_week, last_week)
+
+    @display_flag = false
+    select_date = params[:date]
+    if select_date != "" && select_date != nil
+      @display_flag = true
+      @post_count = @user.books.where("created_at >= ? and created_at <= ?", select_date.to_date, select_date.to_date + 1).count
+      render :posts
+    end
+
   end
 
   def index

@@ -10,9 +10,16 @@
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
 
+
       <%= render 'post', user: @user, day_before: @day_before, comp_last_week: @comp_last_week %>
 
       <%= render 'posts', user: @user %>
+
+      <%= render 'form', user: @user %>
+      <div class="post_count">
+        <%= render 'post_count', display_flag: @display_flag, post_count: @post_count, user: @user %>
+      </div>
+
     </div>
   </div>
 </div>

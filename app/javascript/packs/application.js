@@ -7,9 +7,11 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import Chart from "chart.js/auto";
 import jQuery from "jquery"
 import "popper.js"
 import "bootstrap"
+
 
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application" 
@@ -18,5 +20,6 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+global.Chart = Chart;
 global.$ = jQuery;
 window.$ = jQuery;
