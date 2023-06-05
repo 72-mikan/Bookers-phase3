@@ -1,0 +1,15 @@
+<h2><%= @another_entry.user.name %></h2>
+
+<div>
+  <% @messages.each do |message| %>
+    <%= message.body %></br>
+  <% end %>
+</div>
+    
+<div>
+  <%= form_with model: @message do |f| %>
+    <%= f.text_field :body %>
+    <%= f.hidden_field :room_id, :value => @room.id %>
+  <% end %>
+</div>
+    
