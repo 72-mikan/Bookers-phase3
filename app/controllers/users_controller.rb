@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books.sort{|a, b| b.favorites.size <=> a.favorites.size}
     @book = Book.new
+    @is_room = false
     
     @current_entry = Entry.where(user_id: current_user.id)
     @another_entry = Entry.where(user_id: @user.id)
