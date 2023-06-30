@@ -29,7 +29,8 @@ class UsersController < ApplicationController
       @display_flag = true
       @date_test = select_date
       @date = select_date.to_date
-      @post_count = @user.books.where("created_at >= ? and created_at <= ?", select_date.to_date-1, select_date.to_date ).count
+      @post_count = @user.books.where("created_at >= ? and created_at < ?", select_date.to_date, select_date.to_date+1 ).count
+      #binding.pry
       render :posts
     end
 
