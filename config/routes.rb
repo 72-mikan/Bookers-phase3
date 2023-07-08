@@ -8,20 +8,11 @@ Rails.application.routes.draw do
     resources :book_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
-
   resources :users, only: [:index,:show,:edit,:update] do
     resource :relationships, only: [:create, :destroy]
   	get 'followings' => 'relationships#followings', as: 'followings'
   	get 'followers' => 'relationships#followers', as: 'followers'
   end
-
-  get 'group/mail' => 'geoup#mail';
-  resources :groups, only: [:new, :index, :create, :show, :edit, :update] do
-    resource :group_users, only: [:create, :destroy]
-    resources :group_mails, only: [:new, :create]
-    get 'group_mails/complete/:id' => 'group_mails#complete', as: :group_mail_complete
-  end
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get '/search', to: 'searches#search'
 end
