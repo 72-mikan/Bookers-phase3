@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+
+  has_many :group_users, dependent: :destroy
+  has_many :groups, through: :group_users
   
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
@@ -20,7 +23,6 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 50 }
   
   def follow(user)
-    puts user.name
     relationships.create(followed_id: user.id)
   end
 
@@ -31,6 +33,7 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+
 
   def get_profile_image(weight, height)
     unless self.profile_image.attached?

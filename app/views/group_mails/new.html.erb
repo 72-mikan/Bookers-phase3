@@ -1,0 +1,19 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>Event Mail</h2>
+    <%= form_with model:@group_mail, url: group_group_mails_path , local:true do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control name" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :content %>
+        <%= f.text_area :body, class: "form-control introduction" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit '送信', class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    attributes:
+      group:
+        name: グループ名
+        introduction: 紹介文
+        group_image: グループ画像
