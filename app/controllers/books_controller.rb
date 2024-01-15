@@ -15,7 +15,8 @@ class BooksController < ApplicationController
     # countメソッドは実行時、毎回データベースにクエリを投げる
     # lengthメソッドは実行時、メモリに保存
     # sizeメソッドはcountとlengthの合わせ技
-    @books = Book.all.sort{|a, b| b.favorites.length <=> a.favorites.length}
+    # @books = Book.all.sort{|a, b| b.favorites.length <=> a.favorites.length}
+    @books = Book.all.sort{|a, b| b.view_counts.length <=> a.view_counts.length}.sort{|a, b| b.favorites.length <=> a.favorites.length}
     @book = Book.new
   end
 
